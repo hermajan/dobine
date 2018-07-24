@@ -1,2 +1,0 @@
-# dobine
-Doctrine extensions.

@@ -1,0 +1,27 @@
+{
+	"name": "hermajan/dobine",
+	"description": "Doctrine extensions.",
+	"type": "library",
+	"license": "MIT",
+	
+	"homepage": "https://hermajan.net/dobine",
+	"support": {
+		"issues": "https://github.com/hermajan/dobine/issues"
+	},
+	
+	"autoload": {
+		"psr-4": {
+			"Dobine\\": "src"
+		}
+	},
+	"config": {
+		"vendor-dir": "vendor",
+		"sort-packages": true,
+		"optimize-autoloader": true
+	},
+	
+	"require": {
+		"php": "^7.0",
+		"doctrine/orm": "^2.5"
+	}
+}
