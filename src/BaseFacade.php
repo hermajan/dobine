@@ -22,25 +22,25 @@ abstract class BaseFacade {
 	}
 	
 	public function getForSelect($column = "name", $order = "ASC") {
-	    $output = [];
-	    
-	    $items = $this->repository->findBy([], [$column => $order]);
-	    foreach($items as $item) {
-	        $output[$item->id] = $item->{$column};
-        }
-        
-        return $output;
-    }
-    
-    public function search($needle, $limit = null, $column = "name") {
-        $items = $this->repository->createQueryBuilder("i")->select("i.id, i.".$column)
-            ->where("i.".$column." LIKE :needle")->setParameters(["needle" => "%$needle%"])
+		$output = [];
+		
+		$items = $this->repository->findBy([], [$column => $order]);
+		foreach($items as $item) {
+			$output[$item->id] = $item->{$column};
+		}
+		
+		return $output;
+	}
+	
+	public function search($needle, $limit = null, $column = "name") {
+		$items = $this->repository->createQueryBuilder("i")->select("i.id, i.".$column)
+			->where("i.".$column." LIKE :needle")->setParameters(["needle" => "%$needle%"])
 			->setMaxResults($limit)
-            ->getQuery()->getResult();
-        
-        return $items;
-    }
-
+			->getQuery()->getResult();
+		
+		return $items;
+	}
+	
 	/**
 	 * @param BaseEntity|object $entity
 	 * @return int ID of saved entity.
@@ -52,7 +52,7 @@ abstract class BaseFacade {
 		
 		return $entity->getId();
 	}
-
+	
 	/**
 	 * @param BaseEntity|object $entity
 	 * @return int ID of updated entity.
@@ -65,7 +65,7 @@ abstract class BaseFacade {
 		
 		return $entity->getId();
 	}
-
+	
 	/**
 	 * @param BaseEntity|object $entity
 	 * @throws ORMException

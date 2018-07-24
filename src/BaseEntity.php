@@ -17,14 +17,14 @@ class BaseEntity {
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
 	protected $id;
-
+	
 	/**
 	 * @return int
 	 */
 	public function getId(): int {
 		return $this->id;
 	}
-
+	
 	/**
 	 * @param int $id
 	 */
