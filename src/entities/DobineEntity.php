@@ -1,17 +1,16 @@
 <?php
-namespace Dobine;
+namespace Dobine\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Base entity.
+ * Dobine entity.
  *
  * @ORM\Entity
  */
-class BaseEntity {
+class DobineEntity extends BaseEntity {
 	/**
 	 * @var int
-	 *
 	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
