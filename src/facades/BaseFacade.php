@@ -2,9 +2,7 @@
 namespace Dobine\Facades;
 
 use Dobine\Entities\BaseEntity;
-use Doctrine\ORM\{
-	EntityManager, EntityRepository
-};
+use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORMException};
 
 /**
  * Base facade.
@@ -13,6 +11,8 @@ use Doctrine\ORM\{
  * @property EntityRepository $repository
  */
 abstract class BaseFacade {
+	use CRUD;
+	
 	/**
 	 * @return EntityRepository
 	 */
@@ -37,28 +37,13 @@ abstract class BaseFacade {
 		return $output;
 	}
 	
-	
 	/**
 	 * @param BaseEntity|object $entity
+	 * @throws ORMException
+	 * @throws OptimisticLockException
 	 */
 	public function save($entity) {
 		$this->entityManager->persist($entity);
-		$this->entityManager->flush();
-	}
-	
-	/**
-	 * @param BaseEntity|object $entity
-	 */
-	public function update($entity) {
-		$this->entityManager->merge($entity);
-		$this->entityManager->flush();
-	}
-	
-	/**
-	 * @param BaseEntity|object $entity
-	 */
-	public function remove($entity) {
-		$this->entityManager->remove($entity);
 		$this->entityManager->flush();
 	}
 }
