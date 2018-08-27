@@ -3,9 +3,7 @@ namespace Dobine\Facades;
 
 use Dobine\Entities\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\{
-	EntityManager, EntityRepository
-};
+use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORMException};
 
 /**
  * Dobine facade.
@@ -43,22 +41,26 @@ class DobineFacade extends BaseFacade {
 		
 		return new ArrayCollection($items);
 	}
-	
-	
-	/**
-	 * @param BaseEntity|object $entity
-	 * @return int ID of saved entity.
-	 */
+    
+    
+    /**
+     * @param BaseEntity|object $entity
+     * @return int ID of saved entity.
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
 	public function save($entity) {
 		parent::save($entity);
 		
 		return $entity->getId();
 	}
-	
-	/**
-	 * @param BaseEntity|object $entity
-	 * @return int ID of updated entity.
-	 */
+    
+    /**
+     * @param BaseEntity|object $entity
+     * @return int ID of updated entity.
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
 	public function update($entity) {
 		parent::update($entity);
 		
