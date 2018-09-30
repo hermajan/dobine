@@ -24,5 +24,9 @@
 		"php": "^7.0",
 		"doctrine/orm": "^2.5",
 		"nette/utils": "^2.5"
+	},
+	
+	"suggest": {
+		"vlucas/phpdotenv": "^2.5"
 	}
 }

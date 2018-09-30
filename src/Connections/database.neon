@@ -1,0 +1,7 @@
+doctrine:
+	charset: UTF8
+	driver: pdo_mysql
+	host: localhost
+	user: root
+	password: 'superSecretPassword'
+	dbname: something

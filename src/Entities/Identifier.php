@@ -8,7 +8,7 @@ trait Identifier {
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
-	private $id;
+	protected $id;
 	
 	/**
 	 * @return int
