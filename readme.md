@@ -1,4 +1,6 @@
 # Dobine
+[![Build Status](https://travis-ci.org/hermajan/dobine.svg?branch=master)](https://travis-ci.org/hermajan/dobine)
+
 Doctrine extensions.
 
 ## Instalation
