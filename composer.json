@@ -28,5 +28,8 @@
 	
 	"suggest": {
 		"vlucas/phpdotenv": "^2.5"
+	},
+	"require-dev": {
+		"nette/tester": "^2.0"
 	}
 }
