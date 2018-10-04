@@ -25,11 +25,13 @@
 		"doctrine/orm": "^2.5",
 		"nette/utils": "^2.5"
 	},
-	
-	"suggest": {
+	"require-dev": {
+		"nette/neon": "^2.4",
+		"nette/tester": "^2.0",
 		"vlucas/phpdotenv": "^2.5"
 	},
-	"require-dev": {
-		"nette/tester": "^2.0"
+	"suggest": {
+		"nette/neon": "For parsing connection parameters from .neon files.",
+		"vlucas/phpdotenv": "For loading connection environment from .env file."
 	}
 }

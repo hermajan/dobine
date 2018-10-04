@@ -1,6 +1,8 @@
 <?php
 namespace Dobine\Connections;
 
+use Nette\Neon\Neon;
+
 /**
  * Parameters.
  */
@@ -31,13 +33,32 @@ class Parameters {
 	}
 	
 	/**
-	 * Parses configuration ini file.
+	 * Parses configuration from .ini file.
 	 * @param string $filename Path to the configuration file.
 	 * @return array Array of parameters.
 	 */
 	public function ini(string $filename): array {
 		$ini = parse_ini_file($filename, true);
-		$parameters = $ini[Environment::choose()];
-		return $parameters;
+		if($ini !== false) {
+			$parameters = $ini[Environment::choose()];
+			return $parameters;
+		} else {
+			return [];
+		}
+	}
+	
+	/**
+	 * Parses configuration from .neon file.
+	 * @param string $filename Path to the configuration file.
+	 * @return array Array of parameters.
+	 */
+	public function neon(string $filename): array {
+		$neon = file_get_contents($filename);
+		if($neon !== false) {
+			$parameters = Neon::decode($neon);
+			return $parameters;
+		} else {
+			return [];
+		}
 	}
 }
