@@ -3,7 +3,7 @@ namespace Dobine\Connections;
 
 require __DIR__."/../bootstrap.php";
 
-use Doctrine\DBAL\{Connection, DBALException};
+use Doctrine\DBAL\Connection;
 use Tester\{Assert, TestCase};
 
 /**
@@ -14,20 +14,21 @@ class DBALTest extends TestCase {
 	/** @var Connection */
 	private $connection;
 	
-	/**
-	 * @throws DBALException
-	 */
-	public function setUp() {
+	public function testIronMan() {
 		$_SERVER["SERVER_NAME"] = "127.0.0.1";
 		$db = new DBAL(__DIR__."/database.ini");
 		$this->connection = $db->getConnection();
+		
+		$name = $this->connection->fetchColumn("SELECT name FROM heroes WHERE id = ?", [1]);
+		Assert::equal("Tony Stark", $name);
 	}
 	
-	public function testIronMan() {
-		$statement = $this->connection->executeQuery("SELECT name FROM heroes WHERE id=?", [1]);
-		while($row = $statement->fetch()) {
-			Assert::equal("Tony Stark", $row["name"]);
-		}
+	public function testQuake() {
+		$db = new DBAL(__DIR__."/database.neon");
+		$this->connection = $db->getConnection();
+		
+		$name = $this->connection->fetchColumn("SELECT name FROM heroes WHERE city = ?", ["Hunan"]);
+		Assert::equal("Daisy Johnson", $name);
 	}
 }
 

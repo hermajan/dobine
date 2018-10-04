@@ -56,7 +56,7 @@ class Parameters {
 		$neon = file_get_contents($filename);
 		if($neon !== false) {
 			$parameters = Neon::decode($neon);
-			return $parameters;
+			return $parameters["doctrine"];
 		} else {
 			return [];
 		}

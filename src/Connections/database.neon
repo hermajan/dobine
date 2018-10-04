@@ -3,5 +3,5 @@ doctrine:
 	driver: pdo_mysql
 	host: localhost
 	user: root
-	password: 'superSecretPassword'
+	password: superSecretPassword
 	dbname: something
