@@ -12,7 +12,7 @@ use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORME
  */
 trait CRUD {
 	/**
-	 * @param $entity
+	 * @param object $entity
 	 * @throws ORMException
 	 * @throws OptimisticLockException
 	 */

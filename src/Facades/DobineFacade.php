@@ -21,7 +21,7 @@ class DobineFacade extends BaseFacade {
 	}
 
 	/**
-	 * @return ArrayCollection
+	 * @return array|ArrayCollection
 	 */
 	public function getAll() {
 		return new ArrayCollection(parent::getAll());

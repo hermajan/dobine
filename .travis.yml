@@ -1,10 +1,10 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
   - 7.2
-  - nightly
+  - 7.3
+  - 7.4snapshot
 
 services:
   - mysql
@@ -20,7 +20,7 @@ script:
   - ./vendor/bin/tester -s ./tests/
 
 allow_failures:
-  - php: nightly
+  - php: 7.4snapshot
 
 after_failure:
   - for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done

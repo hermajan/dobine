@@ -21,17 +21,22 @@
 	},
 	
 	"require": {
-		"php": "^7.0",
-		"doctrine/orm": "^2.5",
-		"nette/utils": "^2.5"
+		"php": "^7.1",
+		"doctrine/orm": "^2.5"
 	},
 	"require-dev": {
 		"nette/neon": "^2.4",
-		"nette/tester": "^2.0",
+		"nette/tester": "^2.3",
+		"nette/utils": "^2.5",
+		"phpstan/phpstan": "^0.11.12",
+		"phpstan/phpstan-doctrine": "^0.11.5",
+		"phpstan/phpstan-nette": "^0.11.1",
+		"phpstan/phpstan-shim": "^0.11.12",
 		"vlucas/phpdotenv": "^2.5"
 	},
 	"suggest": {
 		"nette/neon": "For parsing connection parameters from .neon files.",
+		"nette/utils": "For using with Nette.",
 		"vlucas/phpdotenv": "For loading connection environment from .env file."
 	}
 }
