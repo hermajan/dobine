@@ -33,8 +33,8 @@ class TablePrefixSubscriber implements EventSubscriber {
 		$classMetadata = $args->getClassMetadata();
 		
 		// Only add the prefixes to our own entities.
-		if(false !== (strpos($classMetadata->namespace, (string)$parameters["namespace"]))) {
-			$prefix = (string)$parameters["prefix"];
+		if(false !== (strpos($classMetadata->namespace, (string)$this->parameters["namespace"]))) {
+			$prefix = (string)$this->parameters["prefix"];
 			
 			// Do not re-apply the prefix when the table is already prefixed
 			if(false === strpos($classMetadata->getTableName(), $prefix)) {
