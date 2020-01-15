@@ -6,11 +6,11 @@ namespace Dobine\Types;
  *
  * Usage in entity:
  *  * @var string
- *  * @ORM\Column(type="exampleEnum", nullable=false)
- *   private $enum;
+ *  * @ORM\Column(name="example", type="exampleEnum", nullable=false)
+ *   private $example;
  */
 class ExampleEnum extends EnumType {
-    protected $name = "exampleEnum";
-    
-    protected $values = ["4", "8", "15", "16", "23", "42"];
+	protected $name = "exampleEnum";
+	
+	const ENUM_VALUES = ["4", "8", "15", "16", "23", "42"];
 }

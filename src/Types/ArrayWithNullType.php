@@ -5,9 +5,9 @@ use Doctrine\DBAL\Types\ArrayType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * Datatype for saving empty arrarys as null in Doctrine entities.
+ * Datatype for saving empty arrays as null in Doctrine entities.
  */
-class ArrayWithNull extends ArrayType {
+class ArrayWithNullType extends ArrayType {
 	public function convertToDatabaseValue($value, AbstractPlatform $platform) {
 		if(!isset($value)) {
 			return null;
