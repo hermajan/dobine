@@ -12,7 +12,7 @@ $parameters = [
 	"driver" => "pdo_mysql",
 	"host" => "localhost",
 	"user" => "root",
-	"password" => "",
+	"password" => "heslo",
 	"dbname" => "testing",
     "paths" => [__DIR__."/entities"]
 ];

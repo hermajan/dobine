@@ -1,6 +1,8 @@
 <?php
 namespace Dobine\Entities;
 
+use Doctrine\ORM\Mapping as ORM;
+
 trait Identifier {
 	/**
 	 * @var int

@@ -6,23 +6,29 @@ use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORME
 
 /**
  * Trait CRUD
- * 
+ *
  * @property EntityManager $entityManager
  * @property EntityRepository $repository
  */
 trait CRUD {
 	/**
-	 * @param object $entity
+	 * @param BaseEntity|object $entity
 	 * @throws ORMException
 	 * @throws OptimisticLockException
 	 */
 	public function create($entity) {
 		$this->entityManager->persist($entity);
-		$this->entityManager->flush();
+		$this->entityManager->flush($entity);
 	}
 	
-	public function read() {
-		return $this->repository->findAll();
+	/**
+	 * @param BaseEntity|object $entity
+	 * @return BaseEntity|object
+	 * @throws ORMException
+	 */
+	public function read($entity) {
+		$this->entityManager->refresh($entity);
+		return $entity;
 	}
 	
 	/**
@@ -32,7 +38,7 @@ trait CRUD {
 	 */
 	public function update($entity) {
 		$this->entityManager->merge($entity);
-		$this->entityManager->flush();
+		$this->entityManager->flush($entity);
 	}
 	
 	/**
@@ -40,8 +46,8 @@ trait CRUD {
 	 * @throws ORMException
 	 * @throws OptimisticLockException
 	 */
-	public function remove($entity) {
+	public function delete($entity) {
 		$this->entityManager->remove($entity);
-		$this->entityManager->flush();
+		$this->entityManager->flush($entity);
 	}
 }

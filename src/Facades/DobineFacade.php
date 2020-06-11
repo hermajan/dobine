@@ -7,7 +7,7 @@ use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORME
 
 /**
  * Dobine facade.
- * 
+ *
  * @property EntityManager $entityManager
  * @property EntityRepository $repository
  */
@@ -19,14 +19,35 @@ class DobineFacade extends BaseFacade {
 	public function getById($id) {
 		return $this->repository->findOneBy(["id" => $id]);
 	}
-
+	
 	/**
+	 * @param bool|null $ac True if return as ArrayCollection, false otherwise.
 	 * @return array|ArrayCollection
 	 */
-	public function getAll() {
-		return new ArrayCollection(parent::getAll());
+	public function getAll(?bool $ac = true) {
+		$array = parent::getAll();
+		if(isset($ac) and $ac === true) {
+			return new ArrayCollection($array);
+		}
+		return $array;
 	}
-
+	
+	/**
+	 * Gets data for <select> tag.
+	 * @param string $column Name of column for key.
+	 * @param string $order Sorting type (ASC or DESC).
+	 * @return array
+	 */
+	public function getForSelect($column = "name", $order = "ASC") {
+		$output = [];
+		$items = $this->repository->findBy([], [$column => $order]);
+		foreach($items as $item) {
+			$output[$item->id] = $item->{$column};
+		}
+		
+		return $output;
+	}
+	
 	/**
 	 * @param string $needle Searched query.
 	 * @param int|null $limit For how many items to search.
@@ -41,26 +62,25 @@ class DobineFacade extends BaseFacade {
 		
 		return new ArrayCollection($items);
 	}
-    
-    
-    /**
-     * @param BaseEntity|object $entity
-     * @return int ID of saved entity.
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
+	
+	/**
+	 * @param BaseEntity|object $entity
+	 * @return int ID of saved entity.
+	 * @throws ORMException
+	 * @throws OptimisticLockException
+	 */
 	public function save($entity) {
 		parent::save($entity);
 		
 		return $entity->getId();
 	}
-    
-    /**
-     * @param BaseEntity|object $entity
-     * @return int ID of updated entity.
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
+	
+	/**
+	 * @param BaseEntity|object $entity
+	 * @return int ID of updated entity.
+	 * @throws ORMException
+	 * @throws OptimisticLockException
+	 */
 	public function update($entity) {
 		parent::update($entity);
 		

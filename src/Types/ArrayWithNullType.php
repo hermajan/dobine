@@ -1,8 +1,8 @@
 <?php
 namespace Dobine\Types;
 
-use Doctrine\DBAL\Types\ArrayType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\ArrayType;
 
 /**
  * Datatype for saving empty arrays as null in Doctrine entities.
