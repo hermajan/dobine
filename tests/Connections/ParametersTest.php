@@ -19,7 +19,7 @@ class ParametersTest extends TestCase {
 	
 	public function testLoad() {
 		$neon = $this->parameters->load(__DIR__."/database.neon", "doctrine");
-		Assert::equal("db", $neon["host"]);
+		Assert::equal("pdo_mysql", $neon["driver"]);
 	}
 	
 	public function testIni() {
