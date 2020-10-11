@@ -16,7 +16,9 @@ class DBAL {
 	 * @throws DBALException
 	 */
 	public function __construct(array $parameters = []) {
-		$this->connect($parameters);
+		if(!empty($parameters)) {
+			$this->connect($parameters);
+		}
 	}
 	
 	public function __destruct() {

@@ -15,17 +15,16 @@ class DBALTest extends TestCase {
 	private $connection;
 	
 	public function testIronMan() {
-		$_SERVER["SERVER_NAME"] = "127.0.0.1";
-		$db = new DBAL(__DIR__."/database.ini");
-		$this->connection = $db->getConnection();
+		$db = new DBAL();
+		$this->connection = $db->connectFromFile(__DIR__."/database.neon", "doctrine");
 		
 		$name = $this->connection->fetchColumn("SELECT name FROM heroes WHERE id = ?", [1]);
 		Assert::equal("Tony Stark", $name);
 	}
 	
 	public function testQuake() {
-		$db = new DBAL(__DIR__."/database.neon");
-		$this->connection = $db->getConnection();
+		$db = new DBAL();
+		$this->connection = $db->connectFromFile(__DIR__."/database.ini", "development");
 		
 		$name = $this->connection->fetchColumn("SELECT name FROM heroes WHERE city = ?", ["Hunan"]);
 		Assert::equal("Daisy Johnson", $name);

@@ -18,18 +18,17 @@ class ParametersTest extends TestCase {
 	}
 	
 	public function testLoad() {
-		$neon = $this->parameters->load(__DIR__."/database.neon");
-		Assert::equal("127.0.0.1", $neon["host"]);
+		$neon = $this->parameters->load(__DIR__."/database.neon", "doctrine");
+		Assert::equal("db", $neon["host"]);
 	}
 	
 	public function testIni() {
-		$_SERVER["SERVER_NAME"] = "127.0.0.1";
-		$ini = $this->parameters->ini(__DIR__."/database.ini");
+		$ini = $this->parameters->ini(__DIR__."/database.ini", "development");
 		Assert::equal("root", $ini["user"]);
 	}
 	
 	public function testNeon() {
-		$neon = $this->parameters->neon(__DIR__."/database.neon");
+		$neon = $this->parameters->neon(__DIR__."/database.neon", "doctrine");
 		Assert::equal("testing", $neon["dbname"]);
 	}
 }
