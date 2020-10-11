@@ -21,15 +21,19 @@ class DobineFacade extends BaseFacade {
 	}
 	
 	/**
-	 * @param bool|null $ac True if return as ArrayCollection, false otherwise.
-	 * @return array|ArrayCollection
+	 * Gets data for <select> tag.
+	 * @param string $column Name of column for key.
+	 * @param string $order Sorting type (ASC or DESC).
+	 * @return array
 	 */
-	public function getAll(?bool $ac = true) {
-		$array = parent::getAll();
-		if(isset($ac) and $ac === true) {
-			return new ArrayCollection($array);
+	public function getForSelect($column = "name", $order = "ASC") {
+		$output = [];
+		$items = $this->repository->findBy([], [$column => $order]);
+		foreach($items as $item) {
+			$output[$item->id] = $item->{$column};
 		}
-		return $array;
+		
+		return $output;
 	}
 	
 	/**

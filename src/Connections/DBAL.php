@@ -10,18 +10,31 @@ class DBAL {
 	/** @var Connection */
 	private $connection;
 	
-	/** @var array */
-	private $data;
-	
 	/**
 	 * DBAL constructor.
-	 * @param string $filename Path to the configuration file.
+	 * @param array $parameters Array of parameters.
 	 * @throws DBALException
 	 */
-	public function __construct(string $filename) {
+	public function __construct(array $parameters = []) {
+		$this->connect($parameters);
+	}
+	
+	public function __destruct() {
+		if(isset($this->connection)) {
+			$this->disconnect();
+		}
+	}
+	
+	/**
+	 * @param string $filename Path to the configuration file.
+	 * @param string $section
+	 * @return Connection
+	 * @throws DBALException
+	 */
+	public function connectFromFile(string $filename, string $section) {
 		$parameters = new Parameters();
-		$this->data = $parameters->load($filename);
-		$this->connect($this->data);
+		$params = $parameters->load($filename, $section);
+		return $this->connect($params);
 	}
 	
 	/**
@@ -30,11 +43,7 @@ class DBAL {
 	 * @return Connection Connection to desired database.
 	 * @throws DBALException
 	 */
-	public function connect(array $parameters = null): Connection {
-		if(is_null($parameters)) {
-			$parameters = $this->data;
-		}
-		
+	public function connect(array $parameters = []): Connection {
 		$config = new Configuration();
 		$this->connection = DriverManager::getConnection($parameters, $config);
 		return $this->connection;
@@ -44,13 +53,9 @@ class DBAL {
 		return $this->connection;
 	}
 	
-	public function __destruct() {
-		$this->connection->close();
-	}
-	
 	/**
 	 * Closes a connection.
-	 * @param Connection $connection Connection to close.
+	 * @param Connection|null $connection Connection to close.
 	 */
 	public function disconnect(Connection $connection = null) {
 		if(!isset($connection)) {
