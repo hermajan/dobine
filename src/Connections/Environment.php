@@ -21,7 +21,7 @@ class Environment {
 	
 	/**
 	 * Chooses environment.
-	 * @param null|string $environment
+	 * @param string|null $environment
 	 * @return string
 	 */
 	public static function choose($environment = null) {

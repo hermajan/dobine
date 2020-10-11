@@ -49,6 +49,9 @@ class DBAL {
 		return $this->connection;
 	}
 	
+	/**
+	 * @return Connection
+	 */
 	public function getConnection(): Connection {
 		return $this->connection;
 	}

@@ -37,28 +37,12 @@ class DobineFacade extends BaseFacade {
 	}
 	
 	/**
-	 * Gets data for <select> tag.
-	 * @param string $column Name of column for key.
-	 * @param string $order Sorting type (ASC or DESC).
-	 * @return array
-	 */
-	public function getForSelect($column = "name", $order = "ASC") {
-		$output = [];
-		$items = $this->repository->findBy([], [$column => $order]);
-		foreach($items as $item) {
-			$output[$item->id] = $item->{$column};
-		}
-		
-		return $output;
-	}
-	
-	/**
 	 * @param string $needle Searched query.
 	 * @param int|null $limit For how many items to search.
 	 * @param string $column Where to search.
 	 * @return ArrayCollection
 	 */
-	public function search($needle, $limit = null, $column = "name") {
+	public function search(string $needle, $limit = null, $column = "name") {
 		$items = $this->repository->createQueryBuilder("i")->select("i.id, i.".$column)
 			->where("i.".$column." LIKE :needle")->setParameters(["needle" => "%$needle%"])
 			->setMaxResults($limit)
