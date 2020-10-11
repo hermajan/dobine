@@ -1,7 +1,7 @@
 doctrine:
 	charset: UTF8
 	driver: pdo_mysql
-	host: db
+	host: 127.0.0.1
 	user: root
-	password: "heslo"
+	password: ""
 	dbname: testing
