@@ -28,10 +28,9 @@
 		"nette/neon": "^2.4",
 		"nette/tester": "^2.3",
 		"nette/utils": "^2.5",
-		"phpstan/phpstan": "^0.11.12",
-		"phpstan/phpstan-doctrine": "^0.11.5",
-		"phpstan/phpstan-nette": "^0.11.1",
-		"phpstan/phpstan-shim": "^0.11.12",
+		"phpstan/phpstan": "^0.12.64",
+		"phpstan/phpstan-doctrine": "^0.12.26",
+		"phpstan/phpstan-nette": "^0.12.12",
 		"vlucas/phpdotenv": "^2.5"
 	},
 	"suggest": {

@@ -1,6 +1,6 @@
 parameters:
 	level: 4
-	autoload_directories:
+	scanDirectories:
 		- %currentWorkingDirectory%/src/
 
 includes:
