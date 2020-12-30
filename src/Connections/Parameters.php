@@ -31,7 +31,7 @@ class Parameters {
 	 */
 	public function load(string $filename, string $section = null): array {
 		$parameters = [];
-		if(isset($filename)) {
+		if(!empty($filename)) {
 			$extension = pathinfo($filename, PATHINFO_EXTENSION);
 			
 			if(method_exists($this, $extension)) {
