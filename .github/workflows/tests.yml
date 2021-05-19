@@ -55,5 +55,8 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --no-progress ${{ matrix.dependecies }}
         
+      - name: Start mysql service
+        run: sudo /etc/init.d/mysql start
+        
       - run: mysql < ./tests/testing.sql -u root
       - run: vendor/bin/tester -C tests
