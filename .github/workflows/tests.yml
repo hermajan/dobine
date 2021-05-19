@@ -20,12 +20,12 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: heslo
           MYSQL_DATABASE: testing
           MYSQL_USER: root
+          MYSQL_PASSWORD: heslo
         ports:
-          - 3306/tcp
+          - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     
     steps:
