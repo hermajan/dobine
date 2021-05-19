@@ -1,5 +1,5 @@
 # Dobine
-[![Build Status](https://travis-ci.org/hermajan/dobine.svg?branch=master)](https://travis-ci.org/hermajan/dobine)
+[![Tests](https://github.com/hermajan/dobine/workflows/Tests/badge.svg)](https://github.com/hermajan/dobine/actions?query=workflow%3ATests)
 [![Packagist](https://img.shields.io/packagist/v/hermajan/dobine.svg)](https://packagist.org/packages/hermajan/dobine)
 
 Doctrine extensions.
