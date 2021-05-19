@@ -18,7 +18,7 @@ jobs:
     
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:5.6
         env:
           MYSQL_ROOT_PASSWORD: heslo
           MYSQL_DATABASE: testing
@@ -57,5 +57,5 @@ jobs:
       - name: Start mysql service
         run: sudo /etc/init.d/mysql start
         
-      - run: mysql < ./tests/testing.sql -h 127.0.0.1 -u root -p heslo
+      - run: mysql < ./tests/testing.sql -u root -p heslo
       - run: vendor/bin/tester -C tests
