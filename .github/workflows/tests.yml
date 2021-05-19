@@ -57,5 +57,5 @@ jobs:
       - name: Start mysql service
         run: sudo /etc/init.d/mysql start
         
-      - run: mysql < ./tests/testing.sql -h 127.0.0.1 -u root -p heslo
+      - run: mysql < ./tests/testing.sql -h 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -u root -p heslo
       - run: vendor/bin/tester -C tests
