@@ -1,6 +1,7 @@
 <?php
 namespace Dobine\Entities;
 
+use Dobine\Attributes\Id;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,5 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class DobineEntity extends BaseEntity {
-	use Identifier;
+	use Id;
+	
+	public function toArray(): array {
+		return get_object_vars($this);
+	}
 }

@@ -1,9 +1,9 @@
 <?php
-namespace Dobine\Entities;
+namespace Dobine\Attributes;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait Identifier {
+trait Id {
 	/**
 	 * @var int
 	 * @ORM\Column(name="id", type="integer", nullable=false)
