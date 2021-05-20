@@ -57,5 +57,5 @@ jobs:
       - name: Start mysql service
         run: sudo systemctl start mysql.service
         
-      - run: mysql < ./tests/testing.sql -u root -p heslo
+      - run: mysql < ./tests/testing.sql -u root -p root
       - run: vendor/bin/tester -C tests

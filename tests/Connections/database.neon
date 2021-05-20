@@ -3,5 +3,5 @@ doctrine:
 	driver: pdo_mysql
 	host: localhost
 	user: root
-	password: "heslo"
+	password: "root"
 	dbname: testing
