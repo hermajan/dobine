@@ -1,4 +1,5 @@
 <?php
+
 namespace Dobine\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;

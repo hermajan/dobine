@@ -2,13 +2,12 @@
 namespace Dobine\Facades;
 
 use Dobine\Entities\BaseEntity;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORMException};
+use Doctrine\ORM\{Decorator\EntityManagerDecorator, EntityRepository};
 
 /**
  * Dobine facade.
  *
- * @property EntityManager $entityManager
+ * @property EntityManagerDecorator $entityManager
  * @property EntityRepository $repository
  */
 class DobineFacade extends BaseFacade {
@@ -24,9 +23,8 @@ class DobineFacade extends BaseFacade {
 	 * Gets data for <select> tag.
 	 * @param string $column Name of column for key.
 	 * @param string $order Sorting type (ASC or DESC).
-	 * @return array
 	 */
-	public function getForSelect($column = "name", $order = "ASC") {
+	public function getForSelect(string $column = "name", string $order = "ASC"): array {
 		$output = [];
 		$items = $this->repository->findBy([], [$column => $order]);
 		foreach($items as $item) {
@@ -40,24 +38,19 @@ class DobineFacade extends BaseFacade {
 	 * @param string $needle Searched query.
 	 * @param int|null $limit For how many items to search.
 	 * @param string $column Where to search.
-	 * @return ArrayCollection
 	 */
-	public function search(string $needle, $limit = null, $column = "name") {
-		$items = $this->repository->createQueryBuilder("i")->select("i.id, i.".$column)
+	public function search(string $needle, ?int $limit = null, string $column = "name"): array {
+		return $this->repository->createQueryBuilder("i")->select("i.id, i.".$column)
 			->where("i.".$column." LIKE :needle")->setParameters(["needle" => "%$needle%"])
 			->setMaxResults($limit)
 			->getQuery()->getResult();
-		
-		return new ArrayCollection($items);
 	}
 	
 	/**
 	 * @param BaseEntity|object $entity
 	 * @return int ID of saved entity.
-	 * @throws ORMException
-	 * @throws OptimisticLockException
 	 */
-	public function save($entity) {
+	public function save($entity): int {
 		parent::save($entity);
 		
 		return $entity->getId();
@@ -66,10 +59,8 @@ class DobineFacade extends BaseFacade {
 	/**
 	 * @param BaseEntity|object $entity
 	 * @return int ID of updated entity.
-	 * @throws ORMException
-	 * @throws OptimisticLockException
 	 */
-	public function update($entity) {
+	public function update($entity): int {
 		parent::update($entity);
 		
 		return $entity->getId();

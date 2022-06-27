@@ -1,4 +1,5 @@
 <?php
+
 namespace Dobine\Types;
 
 use Doctrine\ORM\Mapping as ORM;

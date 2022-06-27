@@ -1,6 +1,8 @@
 <?php
+
 namespace Dobine\Attributes;
 
+use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Id {
@@ -12,10 +14,14 @@ trait Id {
 	 */
 	protected $id;
 	
-	/**
-	 * @return int
-	 */
 	public function getId(): int {
 		return $this->id;
+	}
+	
+	/**
+	 * @throws NotSupported
+	 */
+	public function setId() {
+		throw new NotSupported("ID is set by database.");
 	}
 }

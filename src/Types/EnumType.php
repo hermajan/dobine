@@ -1,4 +1,5 @@
 <?php
+
 namespace Dobine\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
@@ -22,7 +23,7 @@ abstract class EnumType extends Type {
 		return static::$values;
 	}
 	
-	public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform) {
+	public function getSQLDeclaration(array $column, AbstractPlatform $platform) {
 		$items = [];
 		foreach(self::getValues() as $key => $val) {
 			$items[$key] = "'".$val."'";

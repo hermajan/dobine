@@ -10,10 +10,6 @@ class TablePrefixSubscriber implements EventSubscriber {
 	/** @var array */
 	private $parameters;
 	
-	/**
-	 * Constructor
-	 * @param array $parameters
-	 */
 	public function __construct(array $parameters) {
 		$this->parameters = $parameters;
 	}
@@ -25,11 +21,7 @@ class TablePrefixSubscriber implements EventSubscriber {
 		return ["loadClassMetadata"];
 	}
 	
-	/**
-	 * @param LoadClassMetadataEventArgs $args
-	 * @return void
-	 */
-	public function loadClassMetadata(LoadClassMetadataEventArgs $args) {
+	public function loadClassMetadata(LoadClassMetadataEventArgs $args): void {
 		$classMetadata = $args->getClassMetadata();
 		
 		// Only add the prefixes to our own entities.

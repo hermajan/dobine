@@ -1,4 +1,5 @@
 <?php
+
 namespace Dobine\Entities\Accessors;
 
 use Nette\Utils\ArrayHash;

@@ -2,35 +2,27 @@
 namespace Dobine\Facades;
 
 use Dobine\Entities\BaseEntity;
-use Doctrine\ORM\{EntityManager, EntityRepository, OptimisticLockException, ORMException};
+use Doctrine\ORM\{Decorator\EntityManagerDecorator, EntityRepository};
 
 /**
  * Base facade.
  *
- * @property EntityManager $entityManager
+ * @property EntityManagerDecorator $entityManager
  * @property EntityRepository $repository
  */
 abstract class BaseFacade {
 	use CRUD;
 	
-	/**
-	 * @return EntityRepository
-	 */
-	public function getRepository() {
+	public function getRepository(): EntityRepository {
 		return $this->repository;
 	}
 	
-	/**
-	 * @return array
-	 */
-	public function getAll() {
+	public function getAll(): array {
 		return $this->repository->findAll();
 	}
 	
 	/**
 	 * @param BaseEntity|object $entity
-	 * @throws ORMException
-	 * @throws OptimisticLockException
 	 */
 	public function save($entity) {
 		$this->create($entity);

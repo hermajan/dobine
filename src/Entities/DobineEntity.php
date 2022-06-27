@@ -1,4 +1,5 @@
 <?php
+
 namespace Dobine\Entities;
 
 use Dobine\Attributes\Id;
