@@ -15,5 +15,5 @@ use Doctrine\ORM\Mapping as ORM;
 class ExampleEnum extends EnumType {
 	protected $name = "exampleEnum";
 	
-	const ENUM_VALUES = ["4", "8", "15", "16", "23", "42"];
+	protected static $values = ["4", "8", "15", "16", "23", "42"];
 }
