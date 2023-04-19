@@ -1,7 +1,7 @@
 <?php
 namespace Dobine\Connections;
 
-use Doctrine\DBAL\{Configuration, Connection, DBALException, DriverManager};
+use Doctrine\DBAL\{Configuration, Connection, DriverManager, Exception as DBALException};
 
 /**
  * Getting data from MySQL database via Doctrine.
@@ -22,9 +22,7 @@ class DBAL {
 	}
 	
 	public function __destruct() {
-		if(isset($this->connection)) {
-			$this->disconnect();
-		}
+		$this->disconnect();
 	}
 	
 	/**
@@ -33,7 +31,7 @@ class DBAL {
 	 * @return Connection
 	 * @throws DBALException
 	 */
-	public function connectFromFile(string $filename, string $section) {
+	public function connectFromFile(string $filename, string $section): Connection {
 		$parameters = new Parameters();
 		$params = $parameters->load($filename, $section);
 		return $this->connect($params);

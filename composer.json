@@ -3,34 +3,38 @@
 	"description": "Doctrine extensions.",
 	"type": "library",
 	"license": "MIT",
-	
 	"homepage": "https://hermajan.net/dobine",
 	"support": {
 		"issues": "https://github.com/hermajan/dobine/issues"
 	},
-	
 	"autoload": {
 		"psr-4": {
 			"Dobine\\": "src"
 		}
 	},
 	"config": {
-		"vendor-dir": "vendor",
 		"sort-packages": true,
 		"optimize-autoloader": true
 	},
-	
+	"scripts": {
+		"phpstan": [
+			"vendor/bin/phpstan analyse src -c phpstan.neon"
+		],
+		"tester": [
+			"php ./vendor/nette/tester/src/tester.php -C -s tests"
+		]
+	},
 	"require": {
 		"php": ">=7.3",
-		"doctrine/orm": "^2.5"
+		"doctrine/orm": "^2.14"
 	},
 	"require-dev": {
 		"nette/neon": "^2.4",
 		"nette/tester": "^2.3",
 		"nette/utils": "^2.5",
-		"phpstan/phpstan": "^0.12.64",
-		"phpstan/phpstan-doctrine": "^0.12.26",
-		"phpstan/phpstan-nette": "^0.12.12",
+		"phpstan/phpstan": "^1.10",
+		"phpstan/phpstan-doctrine": "^1.3",
+		"phpstan/phpstan-nette": "^1.2",
 		"vlucas/phpdotenv": "^2.5"
 	},
 	"suggest": {

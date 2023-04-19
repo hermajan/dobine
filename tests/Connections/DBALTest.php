@@ -18,7 +18,7 @@ class DBALTest extends TestCase {
 		$db = new DBAL();
 		$this->connection = $db->connectFromFile(__DIR__."/database.neon", "doctrine");
 		
-		$name = $this->connection->fetchColumn("SELECT name FROM heroes WHERE id = ?", [1]);
+		$name = $this->connection->fetchOne("SELECT name FROM heroes WHERE id = ?", [1]);
 		Assert::equal("Tony Stark", $name);
 	}
 	
@@ -26,7 +26,7 @@ class DBALTest extends TestCase {
 		$db = new DBAL();
 		$this->connection = $db->connectFromFile(__DIR__."/database.ini", "development");
 		
-		$name = $this->connection->fetchColumn("SELECT name FROM heroes WHERE city = ?", ["Hunan"]);
+		$name = $this->connection->fetchOne("SELECT name FROM heroes WHERE city = ?", ["Hunan"]);
 		Assert::equal("Daisy Johnson", $name);
 	}
 }

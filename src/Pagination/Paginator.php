@@ -11,9 +11,9 @@ class Paginator extends DoctrinePaginator {
 		return $this;
 	}
 	
-	public function toArray(int $hydrationMode = AbstractQuery::HYDRATE_OBJECT): array {
+	public function toArray(): array {
 		try {
-			return iterator_to_array(clone $this->getIterator($hydrationMode), true);
+			return iterator_to_array(clone $this->getIterator(), true);
 		} catch(\Exception $e) {
 			return [];
 		}
