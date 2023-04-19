@@ -6,5 +6,9 @@ Doctrine extensions.
 
 ## Installation
 Install this via [Composer](https://getcomposer.org):
+```bash
+composer require hermajan/dobine
+```
 
-`composer require hermajan/dobine`
+## Documentation
+Usage and documentation for this project is in [GitHub wiki](https://github.com/hermajan/dobine/wiki).
