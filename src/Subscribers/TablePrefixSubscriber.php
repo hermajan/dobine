@@ -1,5 +1,4 @@
 <?php
-
 namespace Dobine\Subscribers;
 
 use Doctrine\Common\EventSubscriber;
@@ -7,8 +6,7 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 class TablePrefixSubscriber implements EventSubscriber {
-	/** @var array */
-	private $parameters;
+	private array $parameters;
 	
 	public function __construct(array $parameters) {
 		$this->parameters = $parameters;
@@ -25,11 +23,11 @@ class TablePrefixSubscriber implements EventSubscriber {
 		$classMetadata = $args->getClassMetadata();
 		
 		// Only add the prefixes to our own entities.
-		if(false !== (strpos($classMetadata->namespace, (string)$this->parameters["namespace"]))) {
+		if((strpos($classMetadata->namespace, (string)$this->parameters["namespace"])) !== false) {
 			$prefix = (string)$this->parameters["prefix"];
 			
 			// Do not re-apply the prefix when the table is already prefixed
-			if(false === strpos($classMetadata->getTableName(), $prefix)) {
+			if(strpos($classMetadata->getTableName(), $prefix) === false) {
 				$tableName = $prefix.$classMetadata->getTableName();
 				$classMetadata->setPrimaryTable(["name" => $tableName]);
 			}
@@ -39,7 +37,7 @@ class TablePrefixSubscriber implements EventSubscriber {
 					$mappedTableName = $classMetadata->associationMappings[$fieldName]["joinTable"]["name"];
 					
 					// Do not re-apply the prefix when the association is already prefixed
-					if(false !== strpos($mappedTableName, $prefix)) {
+					if(strpos($mappedTableName, $prefix) !== false) {
 						continue;
 					}
 					

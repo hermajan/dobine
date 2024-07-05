@@ -1,6 +1,5 @@
 <?php
-
-namespace Dobine\Types;
+namespace Dobine\Types\Enum;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
@@ -10,10 +9,10 @@ use Doctrine\DBAL\Types\Type;
  */
 abstract class EnumType extends Type {
 	/** @var string Name for type for usage in entity. */
-	protected $name;
+	protected string $name;
 	
 	/** @var array Values for selection from enum type. */
-	protected static $values = [];
+	protected static array $values = [];
 	
 	public function getName() {
 		return $this->name;

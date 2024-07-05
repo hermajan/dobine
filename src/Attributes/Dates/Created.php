@@ -1,14 +1,13 @@
 <?php
-namespace Dobine\Attributes;
+namespace Dobine\Attributes\Dates;
 
 use Doctrine\ORM\Mapping as ORM;
 
 trait Created {
 	/**
-	 * @var \DateTime
 	 * @ORM\Column(name="created", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
 	 */
-	protected $created;
+	protected \DateTime $created;
 	
 	public function getCreated(): \DateTime {
 		return $this->created;

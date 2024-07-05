@@ -1,18 +1,16 @@
 <?php
-
-namespace Dobine\Attributes;
+namespace Dobine\Attributes\Ids;
 
 use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Id {
 	/**
-	 * @var int
-	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
-	protected $id;
+	protected int $id;
 	
 	public function getId(): int {
 		return $this->id;

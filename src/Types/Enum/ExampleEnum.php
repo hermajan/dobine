@@ -1,6 +1,5 @@
 <?php
-
-namespace Dobine\Types;
+namespace Dobine\Types\Enum;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *   private $example;
  */
 class ExampleEnum extends EnumType {
-	protected $name = "exampleEnum";
+	protected string $name = "exampleEnum";
 	
-	protected static $values = ["4", "8", "15", "16", "23", "42"];
+	protected static array $values = ["4", "8", "15", "16", "23", "42"];
 }

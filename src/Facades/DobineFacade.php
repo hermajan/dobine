@@ -15,7 +15,7 @@ class DobineFacade extends BaseFacade {
 	 * @param int|string $id ID of entity.
 	 * @return BaseEntity|object|null
 	 */
-	public function getById($id) {
+	public function grabById($id) {
 		return $this->repository->findOneBy(["id" => $id]);
 	}
 	
@@ -24,7 +24,7 @@ class DobineFacade extends BaseFacade {
 	 * @param string $column Name of column for key.
 	 * @param string $order Sorting type (ASC or DESC).
 	 */
-	public function getForSelect(string $column = "name", string $order = "ASC"): array {
+	public function gatherForSelect(string $column = "name", string $order = "ASC"): array {
 		$output = [];
 		$items = $this->repository->findBy([], [$column => $order]);
 		foreach($items as $item) {
@@ -40,29 +40,9 @@ class DobineFacade extends BaseFacade {
 	 * @param string $column Where to search.
 	 */
 	public function search(string $needle, ?int $limit = null, string $column = "name"): array {
-		return $this->repository->createQueryBuilder("i")->select("i.id, i.".$column)
+		return $this->repository->createQueryBuilder("i")
 			->where("i.".$column." LIKE :needle")->setParameters(["needle" => "%$needle%"])
 			->setMaxResults($limit)
 			->getQuery()->getResult();
-	}
-	
-	/**
-	 * @param BaseEntity|object $entity
-	 * @return int ID of saved entity.
-	 */
-	public function save($entity): int {
-		parent::save($entity);
-		
-		return $entity->getId();
-	}
-	
-	/**
-	 * @param BaseEntity|object $entity
-	 * @return int ID of updated entity.
-	 */
-	public function update($entity): int {
-		parent::update($entity);
-		
-		return $entity->getId();
 	}
 }

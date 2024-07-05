@@ -1,8 +1,6 @@
 <?php
-
 namespace Dobine\Pagination;
 
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 
 class Paginator extends DoctrinePaginator {

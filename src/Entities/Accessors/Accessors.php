@@ -1,5 +1,4 @@
 <?php
-
 namespace Dobine\Entities\Accessors;
 
 trait Accessors {
