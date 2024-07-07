@@ -13,8 +13,11 @@ trait Created {
 		return $this->created;
 	}
 	
-	public function setCreated(): self {
-		$this->created = new \DateTime();
+	public function setCreated(?\DateTime $created = null): self {
+		if(!isset($created)) {
+			$created = new \DateTime();
+		}
+		$this->created = $created;
 		return $this;
 	}
 }

@@ -4,7 +4,7 @@ namespace Dobine\Attributes\Knp;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
-trait KnpTranslatable {
+trait Translatable {
 	use TranslatableTrait;
 	
 	public function getTranslation(?string $locale = null): ?TranslationInterface {
