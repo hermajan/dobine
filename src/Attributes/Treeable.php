@@ -4,7 +4,7 @@ namespace Dobine\Attributes;
 use Doctrine\Common\Collections\Collection;
 
 trait Treeable {
-	protected ?object $parent;
+	protected ?object $parent = null;
 	
 	protected Collection $children;
 	
