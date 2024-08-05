@@ -11,10 +11,9 @@ trait Treeable {
 	public function getParent(): ?self {
 		return $this->parent;
 	}
-	
-	public function setParent(?self $parent): self {
-		$this->parent = $parent;
-		return $this;
+
+	public function hasParent(): bool {
+		return $this->parent !== null;
 	}
 	
 	public function getParents(?self $entity = null, array $parents = []): array {
@@ -28,9 +27,21 @@ trait Treeable {
 		}
 		return $parents;
 	}
+
+	public function setParent(?self $parent): self {
+		$this->parent = $parent;
+		return $this;
+	}
 	
 	public function getChildren(): Collection {
 		return $this->children;
+	}
+
+	public function hasChildren(): bool {
+		if($this->children->isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 	
 	public function setChildren(Collection $children): self {
