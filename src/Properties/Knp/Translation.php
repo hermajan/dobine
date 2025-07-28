@@ -1,5 +1,5 @@
 <?php
-namespace Dobine\Attributes\Knp;
+namespace Dobine\Properties\Knp;
 
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
@@ -9,7 +9,7 @@ trait Translation {
 	
 	/**
 	 * @var string
-	 * @ORM\Column(name="locale", type="string", length=5, nullable=false, options={"fixed"=true})
 	 */
+	#[ORM\Column(name: "locale", type: "string", length: 5, nullable: false, options: ["fixed" => true])]
 	protected $locale;
 }

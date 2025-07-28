@@ -1,7 +1,7 @@
 <?php
 namespace Dobine\Entities;
 
-use Dobine\Attributes\Arrayable;
+use Dobine\Properties\Arrayable;
 use Doctrine\ORM\Mapping as ORM;
 use Nette\SmartObject;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Dobine\Attributes;
+namespace Dobine\Properties;
 
 trait Arrayable {
 	public function fromArray(array $data): self {

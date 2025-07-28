@@ -1,5 +1,5 @@
 <?php
-namespace Dobine\Attributes;
+namespace Dobine\Properties;
 
 use Doctrine\Common\Collections\Collection;
 
@@ -8,7 +8,7 @@ trait Treeable {
 	
 	protected Collection $children;
 	
-	public function getParent(): ?self {
+	public function getParent(): ?object {
 		return $this->parent;
 	}
 

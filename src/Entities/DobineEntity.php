@@ -1,7 +1,7 @@
 <?php
 namespace Dobine\Entities;
 
-use Dobine\Attributes\Ids\Id;
+use Dobine\Properties\Ids\Id;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

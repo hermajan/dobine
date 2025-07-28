@@ -1,5 +1,5 @@
 <?php
-namespace Dobine\Attributes\Knp;
+namespace Dobine\Properties\Knp;
 
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;

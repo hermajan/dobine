@@ -1,17 +1,13 @@
 <?php
-namespace Dobine\Attributes;
+namespace Dobine\Properties;
 
 use Doctrine\ORM\Mapping as ORM;
 
 trait Sortable {
-	/**
-	 * @ORM\Column(name="`order`", type="integer", nullable=false, options={"default"="1"})
-	 */
+	#[ORM\Column(name: "`order`", type: "integer", nullable: false, options: ["default" => "1"])]
 	protected int $order = 1;
 	
-	/**
-	 * @ORM\Column(name="visible", type="boolean", nullable=false, options={"default"="1"})
-	 */
+	#[ORM\Column(name: "visible", type: "boolean", nullable: false, options: ["default" => "1"])]
 	protected bool $visible = true;
 	
 	public function getOrder(): int {

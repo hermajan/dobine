@@ -1,12 +1,10 @@
 <?php
-namespace Dobine\Attributes;
+namespace Dobine\Properties;
 
 use Doctrine\ORM\Mapping as ORM;
 
 trait Locale {
-	/**
-	 * @ORM\Column(name="locale", type="string", length=5, nullable=false, options={"fixed"=true})
-	 */
+	#[ORM\Column(name: "locale", type: "string", length: 5, nullable: false, options: ["fixed" => true])]
 	protected string $locale;
 	
 	public function getLocale(): string {

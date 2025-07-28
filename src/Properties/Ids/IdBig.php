@@ -1,15 +1,13 @@
 <?php
-namespace Dobine\Attributes\Ids;
+namespace Dobine\Properties\Ids;
 
 use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Mapping as ORM;
 
 trait IdBig {
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned":false})
-	 * @ORM\GeneratedValue(strategy="IDENTITY")
-	 */
+	#[ORM\Id]
+	#[ORM\Column(name: "id", type: "bigint", nullable: false, options: ["unsigned" => false])]
+	#[ORM\GeneratedValue(strategy: "IDENTITY")]
 	protected string $id;
 	
 	public function getId(): string {
