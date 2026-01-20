@@ -14,10 +14,8 @@ trait Id {
 		return $this->id;
 	}
 	
-	/**
-	 * @throws NotSupported
-	 */
-	public function setId() {
-		throw new NotSupported("ID is set by database.");
+	public function setId(int $id): self {
+		$this->id = $id;
+		return $this;
 	}
 }
