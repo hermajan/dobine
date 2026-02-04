@@ -3,7 +3,7 @@ namespace Dobine\Properties;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait Locale {
+trait Localable {
 	#[ORM\Column(name: "locale", type: "string", length: 5, nullable: false, options: ["fixed" => true])]
 	protected string $locale;
 	

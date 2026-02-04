@@ -3,7 +3,7 @@ namespace Dobine\Properties\Dates;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait Created {
+trait Creatable {
 	#[ORM\Column(name: "created", type: "datetime", nullable: false, options: ["default" => "CURRENT_TIMESTAMP"])]
 	protected \DateTime $created;
 	
@@ -17,5 +17,10 @@ trait Created {
 		}
 		$this->created = $created;
 		return $this;
+	}
+	
+	#[ORM\PrePersist]
+	public function prePersistCreated(): void {
+		$this->setCreated();
 	}
 }

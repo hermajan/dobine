@@ -4,7 +4,7 @@ namespace Dobine\Properties\Dates;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Dateable {
-	use Created;
+	use Creatable;
 	
 	#[ORM\Column(name: "updated", type: "datetime", nullable: true)]
 	protected ?\DateTime $updated = null;
@@ -13,8 +13,9 @@ trait Dateable {
 		return $this->updated;
 	}
 	
-	public function setUpdated(?\DateTime $updated): self {
-		$this->updated = $updated;
+	#[ORM\PreUpdate]
+	public function setUpdated(): self {
+		$this->updated = new \DateTime();
 		return $this;
 	}
 }
