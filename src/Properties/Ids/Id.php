@@ -1,7 +1,6 @@
 <?php
 namespace Dobine\Properties\Ids;
 
-use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Mapping as ORM;
 
 trait Id {

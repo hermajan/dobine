@@ -18,15 +18,20 @@ trait Iconable {
 	
 	public function getIconTag(string $alt = "", string $class = ""): ?string {
 		if($this->isIconFont()) {
-			return '<i class="'.$this->icon.'"></i>';
+			$classAttr = (!empty($class) ? ' '.$class : '');
+			$titleAttr = !empty($alt) ? ' title="'.$alt.'"' : '';
+			return '<i  class="'.$this->icon.$classAttr.'"'.$titleAttr.'></i>';
 		}
 		
 		if($this->isIconImage() or $this->isIconLink()) {
-			return '<img src="'.$this->icon.'" alt="'.$alt.'" class="'.$class.'">';
+			$classAttr = !empty($class) ? ' class="'.$class.'"' : '';
+			return '<img src="'.$this->icon.'" alt="'.$alt.'"'.$classAttr.'>';
 		}
 		
 		if($this->isIconEmoji()) {
-			return '<span class="emoji">'.$this->icon.'</span>';
+			$classAttr = !empty($class) ? ' '.$class : '';
+			$titleAttr = !empty($alt) ? ' title="'.$alt.'"' : '';
+			return '<span class="emoji'.$classAttr.'"'.$titleAttr.'>'.$this->icon.'</span>';
 		}
 		
 		return $this->icon;

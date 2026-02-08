@@ -2,8 +2,8 @@
 
 namespace Dobine\Properties\Ids;
 
+use Dobine\Utils\Strings;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\String\UnicodeString;
 
 trait Identable {
 	#[ORM\Column(name: "ident", type: "string", length: 191, unique: true, nullable: false)]
@@ -14,12 +14,7 @@ trait Identable {
 	}
 	
 	public function setIdent(string $ident): self {
-		$unicodeString = new UnicodeString($ident);
-		$this->ident = $unicodeString->trim()
-			->pascal()
-			->ascii()
-			->toString();
-		
+		$this->ident = Strings::identify($ident);
 		return $this;
 	}
 }
