@@ -32,7 +32,7 @@
 	},
 	"require": {
 		"php": ">=7.4",
-		"doctrine/orm": "^2.2"
+		"doctrine/orm": "^2.2|^3.0.0"
 	},
 	"require-dev": {
 		"knplabs/doctrine-behaviors": "dev-sf7.0 as 2.6.3",
