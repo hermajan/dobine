@@ -3,7 +3,7 @@ namespace Dobine\Subscribers;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
-use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 class TablePrefixSubscriber implements EventSubscriber {
 	private array $parameters;
@@ -27,17 +27,17 @@ class TablePrefixSubscriber implements EventSubscriber {
 			$prefix = (string)$this->parameters["prefix"];
 			
 			// Do not re-apply the prefix when the table is already prefixed
-			if(strpos($classMetadata->getTableName(), $prefix) === false) {
+			if(!str_contains($classMetadata->getTableName(), $prefix)) {
 				$tableName = $prefix.$classMetadata->getTableName();
 				$classMetadata->setPrimaryTable(["name" => $tableName]);
 			}
 			
 			foreach($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
-				if($mapping["type"] === ClassMetadataInfo::MANY_TO_MANY && $mapping["isOwningSide"] === true) {
+				if($mapping["type"] === ClassMetadata::MANY_TO_MANY && $mapping["isOwningSide"] === true) {
 					$mappedTableName = $classMetadata->associationMappings[$fieldName]["joinTable"]["name"];
 					
 					// Do not re-apply the prefix when the association is already prefixed
-					if(strpos($mappedTableName, $prefix) !== false) {
+					if(str_contains($mappedTableName, $prefix)) {
 						continue;
 					}
 					
