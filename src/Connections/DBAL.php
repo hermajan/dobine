@@ -7,8 +7,7 @@ use Doctrine\DBAL\{Configuration, Connection, DriverManager, Exception as DBALEx
  * Getting data from MySQL database via Doctrine.
  */
 class DBAL {
-	/** @var Connection */
-	private $connection;
+	private ?Connection $connection = null;
 	
 	/**
 	 * DBAL constructor.
@@ -60,7 +59,7 @@ class DBAL {
 	 * Closes a connection.
 	 * @param Connection|null $connection Connection to close.
 	 */
-	public function disconnect(Connection $connection = null) {
+	public function disconnect(?Connection $connection = null) {
 		if(!isset($connection)) {
 			$this->connection->close();
 		} else {

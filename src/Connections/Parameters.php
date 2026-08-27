@@ -29,7 +29,7 @@ class Parameters {
 	 * @param string|null $section Section in configuration file.
 	 * @return array Array of parameters.
 	 */
-	public function load(string $filename, string $section = null): array {
+	public function load(string $filename, ?string $section = null): array {
 		$parameters = [];
 		if(!empty($filename)) {
 			$extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -48,7 +48,7 @@ class Parameters {
 	 * @param string|null $section Section in configuration file.
 	 * @return array Array of parameters.
 	 */
-	public function ini(string $filename, string $section = null): array {
+	public function ini(string $filename, ?string $section = null): array {
 		$ini = parse_ini_file($filename, true);
 		if($ini !== false) {
 			if(empty($section)) {
@@ -69,7 +69,7 @@ class Parameters {
 	 * @param string|null $section Section in configuration file.
 	 * @return array Array of parameters.
 	 */
-	public function neon(string $filename, string $section = null): array {
+	public function neon(string $filename, ?string $section = null): array {
 		$file = file_get_contents($filename);
 		if($file !== false) {
 			$neon = Neon::decode($file);
