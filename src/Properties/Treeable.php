@@ -4,14 +4,10 @@ namespace Dobine\Properties;
 use Doctrine\Common\Collections\Collection;
 
 trait Treeable {
-	protected ?object $parent = null;
-	
-	protected Collection $children;
-	
 	public function getParent(): ?object {
 		return $this->parent;
 	}
-
+	
 	public function hasParent(): bool {
 		return $this->parent !== null;
 	}
@@ -27,7 +23,7 @@ trait Treeable {
 		}
 		return $parents;
 	}
-
+	
 	public function setParent(?self $parent): self {
 		$this->parent = $parent;
 		return $this;
@@ -36,7 +32,7 @@ trait Treeable {
 	public function getChildren(): Collection {
 		return $this->children;
 	}
-
+	
 	public function hasChildren(): bool {
 		if($this->children->isEmpty()) {
 			return false;

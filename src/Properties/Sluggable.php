@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Sluggable {
 	#[ORM\Column(name: "slug", type: Types::STRING, length: 255, nullable: true)]
-	protected ?string $slug = null;
+	public ?string $slug = null {
+		get => $this->slug;
+		set => $this->slug = is_string($value) ? Strings::slugify($value) : $value;
+	}
 	
 	public function getSlug(): ?string {
 		return $this->slug;

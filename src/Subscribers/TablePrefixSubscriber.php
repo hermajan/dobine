@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace Dobine\Subscribers;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
-use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Mapping\ManyToManyOwningSideMapping;
 
 class TablePrefixSubscriber implements EventSubscriber {
 	private array $parameters;
@@ -33,15 +35,15 @@ class TablePrefixSubscriber implements EventSubscriber {
 			}
 			
 			foreach($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
-				if($mapping["type"] === ClassMetadata::MANY_TO_MANY && $mapping["isOwningSide"] === true) {
-					$mappedTableName = $classMetadata->associationMappings[$fieldName]["joinTable"]["name"];
+				if($mapping instanceof ManyToManyOwningSideMapping) {
+					$mappedTableName = $mapping->joinTable->name;
 					
 					// Do not re-apply the prefix when the association is already prefixed
 					if(str_contains($mappedTableName, $prefix)) {
 						continue;
 					}
 					
-					$classMetadata->associationMappings[$fieldName]["joinTable"]["name"] = $prefix.$mappedTableName;
+					$mapping->joinTable->name = $prefix.$mappedTableName;
 				}
 			}
 		}

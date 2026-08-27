@@ -7,7 +7,7 @@ trait Dateable {
 	use Creatable;
 	
 	#[ORM\Column(name: "updated", type: "datetime", nullable: true)]
-	protected ?\DateTime $updated = null;
+	public ?\DateTime $updated = null;
 	
 	public function getUpdated(): ?\DateTime {
 		return $this->updated;

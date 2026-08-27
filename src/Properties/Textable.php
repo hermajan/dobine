@@ -7,13 +7,22 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Textable {
 	#[ORM\Column(name: "title", type: Types::STRING, length: 255, nullable: true)]
-	private ?string $title = null;
+	public ?string $title = null {
+		get => $this->title;
+		set => $this->title = $value;
+	}
 	
 	#[ORM\Column(name: "perex", type: Types::TEXT, length: 65535, nullable: true)]
-	protected ?string $perex = null;
+	public ?string $perex = null {
+		get => $this->perex;
+		set => $this->perex = $value;
+	}
 	
 	#[ORM\Column(name: "text", type: Types::TEXT, length: null, nullable: true)]
-	protected ?string $text = null;
+	public ?string $text = null {
+		get => $this->text;
+		set => $this->text = $value;
+	}
 	
 	public function getTitle(): ?string {
 		return $this->title;

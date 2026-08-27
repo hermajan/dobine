@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait Localable {
 	#[ORM\Column(name: "locale", type: "string", length: 5, nullable: false, options: ["fixed" => true])]
-	protected string $locale;
+	protected string $locale = '';
 	
 	public function getLocale(): string {
 		return $this->locale;

@@ -1,39 +1,18 @@
 name: Tests
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ['7.4', '8.0', '8.1', '8.2']
-        dependencies: ['', '--prefer-lowest']
-    
-    name: PHP ${{ matrix.php }} ${{ matrix.dependencies }}
-    
-    services:
-      mysql:
-        image: mysql:5.6
-        env:
-          MYSQL_ROOT_PASSWORD: heslo
-          MYSQL_DATABASE: testing
-          MYSQL_USER: root
-          MYSQL_PASSWORD: heslo
-        ports:
-          - 3306:3306
-    
-    steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, json, mbstring, tokenizer, mysql
-          coverage: none
+    tests:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [ '8.4', '8.5' ]
+                dependencies: [ '', '--prefer-lowest' ]
         
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -54,8 +33,46 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --no-progress ${{ matrix.dependecies }}
         
-      - name: Start mysql service
-        run: sudo systemctl start mysql.service
+        services:
+            mysql:
+                image: mysql:5.6
+                env:
+                    MYSQL_ROOT_PASSWORD: heslo
+                    MYSQL_DATABASE: testing
+                    MYSQL_USER: root
+                    MYSQL_PASSWORD: heslo
+                ports:
+                    - 3306:3306
         
-      - run: mysql < ./tests/testing.sql -u root -proot
-      - run: vendor/bin/tester -C tests
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: dom, json, mbstring, tokenizer, mysql
+                    coverage: none
+            
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
+            
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v4
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
+            
+            #- name: Remove composer.lock
+            # run: rm -rf composer.lock
+            
+            -   name: Install dependencies
+                if: steps.composer-cache.outputs.cache-hit != 'true'
+                run: composer install --no-progress ${{ matrix.dependecies }}
+            
+            -   name: Start mysql service
+                run: sudo systemctl start mysql.service
+            
+            -   run: mysql < ./tests/testing.sql -u root -proot
+            -   run: vendor/bin/tester -C tests
